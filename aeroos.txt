@@ -1,0 +1,11 @@
+COLOR white
+PRINT Uruchamianie interfejsu AeroOS...
+WAIT 0.5
+CLEAR
+COLOR blue
+PRINT ======================================
+PRINT          Witaj w AeroOS Web!          
+PRINT ======================================
+COLOR white
+PRINT System zostal uruchomiony bezposrednio z GitHuba.
+PRINT Wszystkie systemy dzialaja stabilnie.
