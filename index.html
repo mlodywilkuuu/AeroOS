@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AeroOS - Podgląd Systemu</title>
+    <title>AeroOS - Brama sieciowa</title>
     <style>
         * {
             box-sizing: border-box;
@@ -11,16 +11,16 @@
             padding: 0;
         }
 
-        /* ANIMOWANY GRADIENT W TLE */
+        /* NOWOCZESNY ANIMOWANY GRADIENT W TLE */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(-45deg, #020617, #0f172a, #1e1b4b, #2e1065);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #2e1065, #3b0764);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             overflow: hidden;
         }
 
@@ -31,168 +31,225 @@
         }
 
         /* EFEKT SZKŁA (GLASSMORPHISM) */
-        .glass-container {
-            width: 700px;
-            height: 500px;
-            background: rgba(15, 15, 20, 0.65);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        .glass-panel {
+            width: 450px;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            padding: 20px;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: column;
-        }
-
-        .header {
+            align-items: center;
             text-align: center;
-            color: #569cd6;
-            font-family: 'Courier New', Courier, monospace;
+            transition: all 0.5s ease;
+        }
+
+        /* SZEFY INTERFEJSU */
+        .logo-space {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: white;
             font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 15px;
-            text-shadow: 0 0 8px rgba(86, 156, 214, 0.3);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+            margin-bottom: 20px;
         }
 
-        /* TERMINAL KONSOLI */
-        .terminal {
-            flex-increment: 1;
-            flex: 1;
-            background: #050505;
-            border-radius: 8px;
-            padding: 15px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 14px;
-            line-height: 1.5;
-            overflow-y: auto;
+        h2 {
             color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
-        /* STYLIZACJA LINII TEKSTU */
-        .line { margin-bottom: 4px; }
-        .white { color: #ffffff; }
-        .green { color: #39ff14; text-shadow: 0 0 5px rgba(57, 255, 20, 0.4); }
-        .blue { color: #00bfff; text-shadow: 0 0 5px rgba(0, 191, 255, 0.4); }
-        .red { color: #ff4500; text-shadow: 0 0 5px rgba(255, 69, 0, 0.4); }
+        p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
 
-        /* PASEK ŁADOWANIA WINDOWS STYLE */
-        .progress-bar-container {
+        /* FORMULARZE I INPUTY */
+        .input-group {
             width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            margin-top: 15px;
-            border-radius: 2px;
-            overflow: hidden;
-            position: relative;
+            margin-bottom: 15px;
+            text-align: left;
         }
 
-        .progress-bar {
-            width: 30%;
-            height: 100%;
-            background: #569cd6;
-            position: absolute;
-            left: -30%;
-            border-radius: 2px;
+        label {
+            color: #cbd5e1;
+            font-size: 12px;
+            display: block;
+            margin-bottom: 6px;
+            margin-left: 4px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+        }
+
+        /* PRZYCISKI */
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 10px;
+            color: #020617;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #0ea5e9;
+            transform: translateY(-1px);
+        }
+
+        /* SEKCJE EKRANÓW (UKRYTE DOMYŚLNIE) */
+        .screen {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        /* BŁĘDY */
+        .error-msg {
+            color: #f87171;
+            font-size: 13px;
+            margin-top: 10px;
             display: none;
         }
 
-        .loading .progress-bar {
-            display: block;
-            animation: loadingAnim 1.5s infinite linear;
+        /* KRĘCĄCE SIĘ KÓŁKO W STYLU WINDOWS */
+        .windows-spinner {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            margin-top: 20px;
         }
 
-        @keyframes loadingAnim {
-            0% { left: -30%; }
-            100% { left: 100%; }
+        .windows-spinner .dot {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: rotate(225deg);
+            animation: spinnerAnim 4.5s infinite;
         }
 
-        .status {
-            text-align: center;
-            color: #888;
-            font-size: 11px;
-            margin-top: 8px;
+        .windows-spinner .dot:after {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 10px #38bdf8;
+        }
+
+        .windows-spinner .dot:nth-child(2) { animation-delay: 0.15s; }
+        .windows-spinner .dot:nth-child(3) { animation-delay: 0.3s; }
+        .windows-spinner .dot:nth-child(4) { animation-delay: 0.45s; }
+        .windows-spinner .dot:nth-child(5) { animation-delay: 0.6s; }
+
+        @keyframes spinnerAnim {
+            0% { transform: rotate(225deg); opacity: 1; animation-timing-function: ease-out; }
+            7% { transform: rotate(345deg); animation-timing-function: linear; }
+            30% { transform: rotate(455deg); animation-timing-function: ease-in-out; }
+            39% { transform: rotate(570deg); animation-timing-function: linear; }
+            70% { transform: rotate(815deg); opacity: 1; animation-timing-function: ease-out; }
+            75% { transform: rotate(945deg); animation-timing-function: ease-out; }
+            76% { transform: rotate(945deg); opacity: 0; }
+            100% { transform: rotate(945deg); opacity: 0; }
         }
     </style>
 </head>
-<body class="loading">
+<body>
 
-    <div class="glass-container">
-        <div class="header">AeroOS Virtual Monitor</div>
-        <div class="terminal" id="terminal"></div>
+    <div class="glass-panel">
         
-        <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+        <div class="screen" id="screen-config">
+            <div class="logo-space">A</div>
+            <h2>Konfiguracja AeroOS</h2>
+            <p>Stwórz swoje konto użytkownika pierwszego uruchomienia.</p>
+            
+            <div class="input-group">
+                <label>Nazwa użytkownika</label>
+                <input type="text" id="cfg-username" placeholder="np. Mateusz">
+            </div>
+            <div class="input-group">
+                <label>Hasło dostępowe</label>
+                <input type="password" id="cfg-password" placeholder="Wpisz silne hasło">
+            </div>
+            <button onclick="saveConfiguration()">Zatwierdź i uruchom</button>
+            <div class="error-msg" id="cfg-error">Uzupełnij wszystkie pola!</div>
         </div>
-        <div class="status" id="status">Status: Bootowanie...</div>
+
+        <div class="screen" id="screen-login">
+            <div class="logo-space" id="user-avatar">U</div>
+            <h2 id="login-welcome">Witaj ponownie</h2>
+            <p>Wpisz hasło, aby odblokować system.</p>
+            
+            <div class="input-group">
+                <input type="password" id="login-password" placeholder="Hasło" onkeypress="handleKeyPress(event)">
+            </div>
+            <button onclick="attemptLogin()">Zaloguj się</button>
+            <div class="error-msg" id="login-error">Niepoprawne hasło! Spróbuj ponownie.</div>
+        </div>
+
+        <div class="screen" id="screen-loading">
+            <div class="logo-space">A</div>
+            <h2 id="loading-text">Przygotowywanie pulpitu...</h2>
+            <p>To zajmie tylko chwilę.</p>
+            
+            <div class="windows-spinner">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        const terminal = document.getElementById('terminal');
-        const statusLbl = document.getElementById('status');
-        let currentColor = 'white';
-
-        function writeToScreen(text, color) {
-            const line = document.createElement('div');
-            line.className = `line ${color}`;
-            line.innerText = text;
-            terminal.appendChild(line);
-            terminal.scrollTop = terminal.scrollHeight;
-        }
-
-        function clearScreen() {
-            terminal.innerHTML = '';
-        }
-
-        async function executeScript(filename) {
-            try {
-                const response = await fetch(filename);
-                if (!response.ok) throw new Error();
-                const text = await response.text();
-                const lines = text.split('\n');
-
-                for (let line of lines) {
-                    let trimmed = line.trim();
-                    if (!trimmed) continue;
-
-                    if (trimmed.startsWith('PRINT ')) {
-                        writeToScreen(trimmed.substring(6), currentColor);
-                        await new Promise(r => setTimeout(r, 60));
-                    } else if (trimmed.startsWith('COLOR ')) {
-                        currentColor = trimmed.substring(6).toLowerCase();
-                    } else if (trimmed.startsWith('WAIT ')) {
-                        let sec = parseFloat(trimmed.substring(5));
-                        await new Promise(r => setTimeout(r, sec * 1000));
-                    } else if (trimmed === 'CLEAR') {
-                        clearScreen();
-                    }
-                }
-            } catch (err) {
-                writeToScreen(`BŁĄD KRYTYCZNY: Nie mozna zaladowac pliku ${filename}`, 'red');
-            }
-        }
-
-        async function bootSystem() {
-            document.body.classList.add('loading');
-            statusLbl.innerText = "Status: Uruchamianie systemu...";
-            clearScreen();
-            currentColor = 'white';
-
-            // 1. Ekran Ładowania
-            await executeScript('bootloader.txt');
-            await new Promise(r => setTimeout(r, 300));
-            clearScreen();
-
-            // 2. Rdzeń Systemu
-            await executeScript('aeroos.txt');
-
-            document.body.classList.remove('loading');
-            statusLbl.innerText = "Status: AeroOS Live Active (CPU Idle)";
-        }
-
-        // Start systemu od razu po wejściu na stronę
-        window.onload = bootSystem;
-    </script>
-</body>
-</html>
+        // Sprawdzamy czy użytkownik już istnieje w bazie danych przeglądarki
+        window.onload = function() {
+            const hasAccount = localStorage.getItem('aeroos_configured');
+            
+            if (hasAccount === 'true') {
+                // Jeśli konto istnieje -> Idź od razu do logowania
+                const username = localStorage.getItem('aeroos_username');
+                document.getElementById('login-welcome').innerText = username;
+                document.getElementById('user-avatar').innerText = username.charAt(0).toUpperCase();
+                showScreen('screen-login');
+            } else {
