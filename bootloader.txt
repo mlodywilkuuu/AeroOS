@@ -1,0 +1,12 @@
+COLOR blue
+PRINT ======================================
+PRINT * AeroOS Web Bootloader v0.5   *
+PRINT ======================================
+COLOR white
+PRINT [ WEB ] Inicjalizacja srodowiska sieciowego...
+WAIT 0.5
+PRINT [ CORE ] ladowanie skryptow jądra...
+WAIT 0.8
+COLOR green
+PRINT [ OK ] Obraz systemu gotowy.
+WAIT 0.5
